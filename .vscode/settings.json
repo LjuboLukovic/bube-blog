@@ -9,7 +9,7 @@
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.tabSize": 4,
-  "prettier.configPath": ".prettier.config.js",
+  "prettier.configPath": "prettier.config.js",
   "prettier.useEditorConfig": true,
   "files.exclude": {
     "**/dist": true

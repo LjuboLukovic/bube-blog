@@ -39,10 +39,6 @@ jobs:
         working-directory: hub
         run: pnpm run build
 
-      - name: Export static files
-        working-directory: hub
-        run: pnpm run export
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: isProd ? '/bube-blog' : '',
-  assetPrefix: isProd ? '/bube-blog/' : '',
+  basePath: '/bube-blog',
+  assetPrefix: '/bube-blog/',
   eslint: {
     ignoreDuringBuilds: true,
   },

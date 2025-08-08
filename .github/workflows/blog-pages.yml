@@ -2,7 +2,11 @@ name: Blog - GitHub Pages
 
 on:
   push:
-    branches: main
+    branches:
+      - main
+    paths:
+      - 'blog/**'
+      - '.github/workflows/blog-pages.yml'
   workflow_dispatch:
 
 permissions:

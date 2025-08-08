@@ -1,0 +1,39 @@
+{
+  "profile": {
+    "name": "Hayden Bleasel",
+    "bio": "I'm an Australian Design Engineer living in 🇺🇸 San Francisco, California. I love creating beautiful software that delights users and reimagines the way we interact with technology.",
+    "avatarUrl": "https://github.com/haydenbleasel.png",
+    "secondaryBg": "bg-secondary"
+  },
+  "links": [
+    {
+      "id": "1",
+      "title": "Personal Website",
+      "url": "https://www.haydenbleasel.com/"
+    },
+    {
+      "id": "3",
+      "title": "GitHub",
+      "url": "https://github.com/haydenbleasel"
+    },
+    {
+      "id": "4",
+      "title": "LinkedIn",
+      "url": "https://www.linkedin.com/in/haydenbleasel"
+    }
+  ],
+  "themeSettings": {
+    "colorTheme": "rose",
+    "gradient": "none",
+    "pattern": "pattern-none",
+    "font": "font-sans",
+    "borderRadius": "rounded-lg",
+    "effects": {
+      "shadow": true,
+      "glassmorphism": false,
+      "cardOpacity": 1,
+      "animationSpeed": 400
+    },
+    "type": "dark"
+  }
+}

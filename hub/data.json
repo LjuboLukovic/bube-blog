@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Ljubo Lukovic",
-    "bio": "Softverski inženjer iz Beograda 🇷🇸 sa preko 10 godina iskustva u razvoju veb i mobilnih aplikacija. Fokusiran sam na kvalitetna i efikasna rešenja koja pomažu ljudima i poslovima da rastu. Ispod možete pronaći moje aktuelne projekte, a za detaljnije tekstove i savete posetite moj blog.",
+    "bio": "Softverski inženjer iz Beograda 🇷🇸 sa preko 10 godina iskustva u razvoju veb i mobilnih aplikacija. Fokusiran sam na kvalitetna rešenja koja pomažu pojedincima i organizacijama da rastu. Ispod možete pronaći moje aktuelne projekte, a za detaljnije tekstove i savete posetite moj blog.",
     "avatarUrl": "/avatar.png",
     "secondaryBg": "bg-secondary"
   },
@@ -12,14 +12,14 @@
       "url": "https://ljubo-blog.vercel.app"
     },
     {
-      "id": "3",
+      "id": "2",
       "title": "GitHub",
       "url": "https://github.com/LjuboLukovic"
     },
     {
-      "id": "4",
+      "id": "3",
       "title": "LinkedIn",
-      "url": "https://www.linkedin.com/in/LjuboLukovic"
+      "url": "https://www.linkedin.com/in/ljubo-lukovic"
     }
   ],
   "themeSettings": {

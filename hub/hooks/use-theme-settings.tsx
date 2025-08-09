@@ -170,7 +170,6 @@ export function ThemeSettingsProvider({
 
   // Update the applyThemeSettings function to correctly set HSL values
   const applyThemeSettings = (settings: ThemeSettings, isDark: boolean) => {
-    console.log("Applying theme settings:", settings, "isDark:", isDark);
     const root = document.documentElement;
 
     // Apply theme colors
@@ -204,7 +203,6 @@ export function ThemeSettingsProvider({
       "font-mono"
     );
     document.documentElement.classList.add(settings.font);
-    console.log("Applied font class:", settings.font);
 
     // Apply background pattern to the main element
     const mainElement = document.querySelector("main");
@@ -283,7 +281,6 @@ export function ThemeSettingsProvider({
   }, []);
 
   const updatePattern = useCallback((value: string) => {
-    console.log("Updating pattern:", value);
     setThemeSettings((prev) => ({ ...prev, pattern: value }));
 
     // Apply pattern immediately for responsive feedback

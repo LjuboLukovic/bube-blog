@@ -33,6 +33,16 @@ export const metadata: Metadata = {
   description: "Online prezentacija - Svi projekti i linkovi na jednom mestu.",
 };
 
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' data:",
+  "connect-src 'self' www.google-analytics.com www.googletagmanager.com",
+  "font-src 'self' https://fonts.gstatic.com data:",
+  "frame-src 'none'",
+].join("; ");
+
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string;
 
 export default function RootLayout({
@@ -49,6 +59,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta httpEquiv="Content-Security-Policy" content={csp} />
         <GoogleAnalytics gaId={googleAnalyticsId} debugMode={!isProduction} />
       </head>
       <body

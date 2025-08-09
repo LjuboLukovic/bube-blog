@@ -1,4 +1,5 @@
 import 'css/tailwind.css'
+import { GA } from 'pliny/analytics/GoogleAnalytics'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
@@ -17,6 +18,8 @@ const space_grotesk = Space_Grotesk({
   display: 'swap',
   variable: '--font-space-grotesk',
 })
+
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -94,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      <GA googleAnalyticsId={googleAnalyticsId} />
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />

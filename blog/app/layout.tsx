@@ -19,7 +19,7 @@ const space_grotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
 })
 
-const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),

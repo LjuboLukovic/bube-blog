@@ -73,7 +73,16 @@ export const themeColorMappings = {
 };
 
 // Default theme settings derived from data.json
-const defaultThemeSettings: ThemeSettings = data.themeSettings;
+// Ensure the type property is correctly typed for ThemeSettings
+const defaultThemeSettings: ThemeSettings = {
+  ...data.themeSettings,
+  type:
+    data.themeSettings.type === "light" ||
+    data.themeSettings.type === "dark" ||
+    data.themeSettings.type === "system"
+      ? data.themeSettings.type
+      : undefined,
+};
 
 // Create context
 const ThemeSettingsContext = createContext<{

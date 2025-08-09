@@ -47,7 +47,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className="font-sans">
-      <GoogleAnalytics gaId={googleAnalyticsId} debugMode={!isProduction} />
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <GoogleAnalytics gaId={googleAnalyticsId} debugMode={!isProduction} />
+      </head>
       <body
         className={`${inter.variable} ${merriweather.variable} ${jetbrainsMono.variable}`}
       >

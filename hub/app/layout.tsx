@@ -29,9 +29,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "v0.me",
-  description: "Your personal link sharing platform",
-  generator: "v0.dev",
+  title: "Ljubo Lukovic – Hub",
+  description: "Online prezentacija - Svi projekti i linkovi na jednom mestu.",
 };
 
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string;

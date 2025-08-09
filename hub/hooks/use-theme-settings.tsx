@@ -1,25 +1,31 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, createContext, useContext, useCallback } from "react"
-import { useTheme } from "next-themes"
-import data from "@/data.json" // Import data.json
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useCallback,
+} from "react";
+import { useTheme } from "next-themes";
+import data from "@/data.json"; // Import data.json
 
 // Define the theme settings type
 export interface ThemeSettings {
-  colorTheme: string
-  gradient: string
-  pattern: string
-  font: string
-  borderRadius: string
+  colorTheme: string;
+  gradient: string;
+  pattern: string;
+  font: string;
+  borderRadius: string;
   effects: {
-    shadow: boolean
-    glassmorphism: boolean
-    cardOpacity: number
-    animationSpeed: number
-  }
-  type?: "light" | "dark" | "system" // Add type for next-themes default
+    shadow: boolean;
+    glassmorphism: boolean;
+    cardOpacity: number;
+    animationSpeed: number;
+  };
+  type?: "light" | "dark" | "system"; // Add type for next-themes default
 }
 
 // Theme color mappings - this helps ensure consistent color application
@@ -50,9 +56,9 @@ export const themeColorMappings = {
     accent: "24 94% 93%",
   },
   blue: {
-    primary: "217 91% 60%",
-    secondary: "213 100% 97%",
-    accent: "217 91% 93%",
+    primary: "217 80% 50%",
+    secondary: "213 100% 85%",
+    accent: "217 91% 80%",
   },
   teal: {
     primary: "173 80% 40%",
@@ -64,25 +70,29 @@ export const themeColorMappings = {
     secondary: "327 100% 97%",
     accent: "330 81% 93%",
   },
-}
+};
 
 // Default theme settings derived from data.json
-const defaultThemeSettings: ThemeSettings = data.themeSettings
+const defaultThemeSettings: ThemeSettings = data.themeSettings;
 
 // Create context
 const ThemeSettingsContext = createContext<{
-  themeSettings: ThemeSettings
-  updateColorTheme: (value: string) => void
-  updateGradient: (value: string) => void
-  updatePattern: (value: string) => void
-  updateFont: (value: string) => void
-  updateBorderRadius: (value: string) => void
-  updateCardOpacity: (value: number) => void
-  updateAnimationSpeed: (value: number) => void
-  toggleShadow: (value: boolean) => void
-  toggleGlassmorphism: (value: boolean) => void
-  resetToDefaults: () => void
-  getThemeColors: (theme: string) => { primary: string; secondary: string; accent: string }
+  themeSettings: ThemeSettings;
+  updateColorTheme: (value: string) => void;
+  updateGradient: (value: string) => void;
+  updatePattern: (value: string) => void;
+  updateFont: (value: string) => void;
+  updateBorderRadius: (value: string) => void;
+  updateCardOpacity: (value: number) => void;
+  updateAnimationSpeed: (value: number) => void;
+  toggleShadow: (value: boolean) => void;
+  toggleGlassmorphism: (value: boolean) => void;
+  resetToDefaults: () => void;
+  getThemeColors: (theme: string) => {
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
 }>({
   themeSettings: defaultThemeSettings,
   updateColorTheme: () => {},
@@ -96,26 +106,34 @@ const ThemeSettingsContext = createContext<{
   toggleGlassmorphism: () => {},
   resetToDefaults: () => {},
   getThemeColors: () => ({ primary: "", secondary: "", accent: "" }),
-})
+});
 
-export function ThemeSettingsProvider({ children }: { children: React.ReactNode }) {
-  const { theme } = useTheme()
-  const [themeSettings, setThemeSettings] = useState<ThemeSettings>(defaultThemeSettings)
-  const [isInitialized, setIsInitialized] = useState(false)
+export function ThemeSettingsProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { theme } = useTheme();
+  const [themeSettings, setThemeSettings] =
+    useState<ThemeSettings>(defaultThemeSettings);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Memoized function to get theme colors - improves performance by avoiding recalculations
   const getThemeColors = useCallback((themeName: string) => {
-    return themeColorMappings[themeName as keyof typeof themeColorMappings] || themeColorMappings.default
-  }, [])
+    return (
+      themeColorMappings[themeName as keyof typeof themeColorMappings] ||
+      themeColorMappings.default
+    );
+  }, []);
 
   // Load settings from localStorage on mount
   useEffect(() => {
     try {
-      const savedSettings = localStorage.getItem("themeSettings")
-      let initialSettings = defaultThemeSettings // Start with defaults from data.json
+      const savedSettings = localStorage.getItem("themeSettings");
+      let initialSettings = defaultThemeSettings; // Start with defaults from data.json
 
       if (savedSettings) {
-        const parsedSavedSettings = JSON.parse(savedSettings)
+        const parsedSavedSettings = JSON.parse(savedSettings);
         // Merge saved settings, but prioritize colorTheme and type from data.json
         // This ensures that if the developer changes the default colorTheme or type in data.json,
         // it takes effect even if localStorage has an older value.
@@ -128,64 +146,68 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
             ...defaultThemeSettings.effects, // Start with effects from data.json
             ...parsedSavedSettings.effects, // Overlay with saved effects
           },
-        }
+        };
       }
-      setThemeSettings(initialSettings)
+      setThemeSettings(initialSettings);
     } catch (error) {
-      console.error("Failed to parse theme settings:", error)
-      setThemeSettings(defaultThemeSettings) // Fallback to default if parsing fails
+      console.error("Failed to parse theme settings:", error);
+      setThemeSettings(defaultThemeSettings); // Fallback to default if parsing fails
     } finally {
-      setIsInitialized(true)
+      setIsInitialized(true);
     }
-  }, [])
+  }, []);
 
   // Apply theme settings immediately when they change
   useEffect(() => {
     if (isInitialized) {
       // Save to localStorage
-      localStorage.setItem("themeSettings", JSON.stringify(themeSettings))
+      localStorage.setItem("themeSettings", JSON.stringify(themeSettings));
 
       // Apply CSS variables based on theme settings
-      applyThemeSettings(themeSettings, theme === "dark")
+      applyThemeSettings(themeSettings, theme === "dark");
     }
-  }, [themeSettings, theme, isInitialized])
+  }, [themeSettings, theme, isInitialized]);
 
   // Update the applyThemeSettings function to correctly set HSL values
   const applyThemeSettings = (settings: ThemeSettings, isDark: boolean) => {
-    console.log("Applying theme settings:", settings, "isDark:", isDark)
-    const root = document.documentElement
+    console.log("Applying theme settings:", settings, "isDark:", isDark);
+    const root = document.documentElement;
 
     // Apply theme colors
-    const colors = getThemeColors(settings.colorTheme)
+    const colors = getThemeColors(settings.colorTheme);
 
     // Apply colors to CSS variables for consistent use across components
     if (isDark) {
       // Adjust colors for dark mode - properly format HSL values
-      root.style.setProperty("--primary", colors.primary)
-      root.style.setProperty("--primary-foreground", "0 0% 98%")
-      root.style.setProperty("--icon-text-color", "255, 255, 255") // White text for icons
-      root.style.setProperty("--secondary", colors.secondary)
-      root.style.setProperty("--secondary-foreground", "0 0% 98%")
-      root.style.setProperty("--accent", colors.accent)
-      root.style.setProperty("--accent-foreground", "0 0% 98%")
+      root.style.setProperty("--primary", colors.primary);
+      root.style.setProperty("--primary-foreground", "0 0% 98%");
+      root.style.setProperty("--icon-text-color", "255, 255, 255"); // White text for icons
+      root.style.setProperty("--secondary", colors.secondary);
+      root.style.setProperty("--secondary-foreground", "0 0% 98%");
+      root.style.setProperty("--accent", colors.accent);
+      root.style.setProperty("--accent-foreground", "0 0% 98%");
     } else {
       // Light mode colors
-      root.style.setProperty("--primary", colors.primary)
-      root.style.setProperty("--primary-foreground", "0 0% 98%")
-      root.style.setProperty("--icon-text-color", "255, 255, 255") // White text for icons
-      root.style.setProperty("--secondary", colors.secondary)
-      root.style.setProperty("--secondary-foreground", "0 0% 9%")
-      root.style.setProperty("--accent", colors.accent)
-      root.style.setProperty("--accent-foreground", "0 0% 9%")
+      root.style.setProperty("--primary", colors.primary);
+      root.style.setProperty("--primary-foreground", "0 0% 98%");
+      root.style.setProperty("--icon-text-color", "255, 255, 255"); // White text for icons
+      root.style.setProperty("--secondary", colors.secondary);
+      root.style.setProperty("--secondary-foreground", "0 0% 9%");
+      root.style.setProperty("--accent", colors.accent);
+      root.style.setProperty("--accent-foreground", "0 0% 9%");
     }
 
     // Apply font family to the root element
-    document.documentElement.classList.remove("font-sans", "font-serif", "font-mono")
-    document.documentElement.classList.add(settings.font)
-    console.log("Applied font class:", settings.font)
+    document.documentElement.classList.remove(
+      "font-sans",
+      "font-serif",
+      "font-mono"
+    );
+    document.documentElement.classList.add(settings.font);
+    console.log("Applied font class:", settings.font);
 
     // Apply background pattern to the main element
-    const mainElement = document.querySelector("main")
+    const mainElement = document.querySelector("main");
     if (mainElement) {
       // Remove all pattern classes
       mainElement.classList.remove(
@@ -194,69 +216,78 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
         "pattern-grid",
         "pattern-stripes",
         "pattern-waves",
-        "pattern-hexagons",
-      )
+        "pattern-hexagons"
+      );
 
       // Add the selected pattern class
       if (settings.pattern !== "none") {
-        mainElement.classList.add(settings.pattern)
+        mainElement.classList.add(settings.pattern);
       }
     }
 
     // Apply animation speed
-    root.style.setProperty("--animation-speed", `${settings.effects.animationSpeed}ms`)
+    root.style.setProperty(
+      "--animation-speed",
+      `${settings.effects.animationSpeed}ms`
+    );
 
     // Apply card opacity
-    root.style.setProperty("--card-opacity", settings.effects.cardOpacity.toString())
+    root.style.setProperty(
+      "--card-opacity",
+      settings.effects.cardOpacity.toString()
+    );
 
     // Apply border radius to CSS variable for consistent use
-    root.style.setProperty("--card-border-radius", getBorderRadiusValue(settings.borderRadius))
-  }
+    root.style.setProperty(
+      "--card-border-radius",
+      getBorderRadiusValue(settings.borderRadius)
+    );
+  };
 
   // Helper function to get the actual pixel value for border radius
   const getBorderRadiusValue = (borderRadiusClass: string): string => {
     switch (borderRadiusClass) {
       case "rounded-none":
-        return "0px"
+        return "0px";
       case "rounded-sm":
-        return "0.125rem"
+        return "0.125rem";
       case "rounded":
-        return "0.25rem"
+        return "0.25rem";
       case "rounded-lg":
-        return "0.5rem"
+        return "0.5rem";
       default:
-        return "0.5rem"
+        return "0.5rem";
     }
-  }
+  };
 
   // Optimized update functions with useCallback to prevent unnecessary re-renders
   const updateColorTheme = useCallback(
     (value: string) => {
-      setThemeSettings((prev) => ({ ...prev, colorTheme: value }))
+      setThemeSettings((prev) => ({ ...prev, colorTheme: value }));
 
       // Apply theme colors immediately for responsive feedback
-      const colors = getThemeColors(value)
-      const root = document.documentElement
-      const isDark = theme === "dark"
+      const colors = getThemeColors(value);
+      const root = document.documentElement;
+      const isDark = theme === "dark";
 
       // Apply colors directly without adjustment
-      root.style.setProperty("--primary", colors.primary)
-      root.style.setProperty("--secondary", colors.secondary)
-      root.style.setProperty("--accent", colors.accent)
+      root.style.setProperty("--primary", colors.primary);
+      root.style.setProperty("--secondary", colors.secondary);
+      root.style.setProperty("--accent", colors.accent);
     },
-    [theme, getThemeColors],
-  )
+    [theme, getThemeColors]
+  );
 
   const updateGradient = useCallback((value: string) => {
-    setThemeSettings((prev) => ({ ...prev, gradient: value }))
-  }, [])
+    setThemeSettings((prev) => ({ ...prev, gradient: value }));
+  }, []);
 
   const updatePattern = useCallback((value: string) => {
-    console.log("Updating pattern:", value)
-    setThemeSettings((prev) => ({ ...prev, pattern: value }))
+    console.log("Updating pattern:", value);
+    setThemeSettings((prev) => ({ ...prev, pattern: value }));
 
     // Apply pattern immediately for responsive feedback
-    const mainElement = document.querySelector("main")
+    const mainElement = document.querySelector("main");
     if (mainElement) {
       // Remove all pattern classes
       mainElement.classList.remove(
@@ -265,30 +296,37 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
         "pattern-grid",
         "pattern-stripes",
         "pattern-waves",
-        "pattern-hexagons",
-      )
+        "pattern-hexagons"
+      );
 
       // Add the selected pattern class
       if (value !== "none") {
-        mainElement.classList.add(value)
+        mainElement.classList.add(value);
       }
     }
-  }, [])
+  }, []);
 
   const updateFont = useCallback((value: string) => {
-    setThemeSettings((prev) => ({ ...prev, font: value }))
+    setThemeSettings((prev) => ({ ...prev, font: value }));
 
     // Apply font immediately for responsive feedback
-    document.documentElement.classList.remove("font-sans", "font-serif", "font-mono")
-    document.documentElement.classList.add(value)
-  }, [])
+    document.documentElement.classList.remove(
+      "font-sans",
+      "font-serif",
+      "font-mono"
+    );
+    document.documentElement.classList.add(value);
+  }, []);
 
   const updateBorderRadius = useCallback((value: string) => {
-    setThemeSettings((prev) => ({ ...prev, borderRadius: value }))
+    setThemeSettings((prev) => ({ ...prev, borderRadius: value }));
 
     // Apply border radius immediately for responsive feedback
-    document.documentElement.style.setProperty("--card-border-radius", getBorderRadiusValue(value))
-  }, [])
+    document.documentElement.style.setProperty(
+      "--card-border-radius",
+      getBorderRadiusValue(value)
+    );
+  }, []);
 
   const updateCardOpacity = useCallback((value: number) => {
     setThemeSettings((prev) => ({
@@ -297,11 +335,14 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
         ...prev.effects,
         cardOpacity: value,
       },
-    }))
+    }));
 
     // Apply opacity immediately for responsive feedback
-    document.documentElement.style.setProperty("--card-opacity", value.toString())
-  }, [])
+    document.documentElement.style.setProperty(
+      "--card-opacity",
+      value.toString()
+    );
+  }, []);
 
   const updateAnimationSpeed = useCallback((value: number) => {
     setThemeSettings((prev) => ({
@@ -310,11 +351,14 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
         ...prev.effects,
         animationSpeed: value,
       },
-    }))
+    }));
 
     // Apply animation speed immediately for responsive feedback
-    document.documentElement.style.setProperty("--animation-speed", `${value}ms`)
-  }, [])
+    document.documentElement.style.setProperty(
+      "--animation-speed",
+      `${value}ms`
+    );
+  }, []);
 
   const toggleShadow = useCallback((value: boolean) => {
     setThemeSettings((prev) => ({
@@ -323,8 +367,8 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
         ...prev.effects,
         shadow: value,
       },
-    }))
-  }, [])
+    }));
+  }, []);
 
   const toggleGlassmorphism = useCallback((value: boolean) => {
     setThemeSettings((prev) => ({
@@ -333,12 +377,12 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
         ...prev.effects,
         glassmorphism: value,
       },
-    }))
-  }, [])
+    }));
+  }, []);
 
   const resetToDefaults = useCallback(() => {
-    setThemeSettings(defaultThemeSettings) // Reset to defaults from data.json
-  }, [])
+    setThemeSettings(defaultThemeSettings); // Reset to defaults from data.json
+  }, []);
 
   return (
     <ThemeSettingsContext.Provider
@@ -359,9 +403,9 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
     >
       {children}
     </ThemeSettingsContext.Provider>
-  )
+  );
 }
 
 export function useThemeSettings() {
-  return useContext(ThemeSettingsContext)
+  return useContext(ThemeSettingsContext);
 }

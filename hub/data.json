@@ -1,29 +1,29 @@
 {
   "profile": {
-    "name": "Hayden Bleasel",
-    "bio": "I'm an Australian Design Engineer living in 🇺🇸 San Francisco, California. I love creating beautiful software that delights users and reimagines the way we interact with technology.",
-    "avatarUrl": "https://github.com/haydenbleasel.png",
+    "name": "Ljubo Lukovic",
+    "bio": "Softverski inženjer iz Beograda 🇷🇸 sa preko 10 godina iskustva u razvoju veb i mobilnih aplikacija. Fokusiran sam na kvalitetna i efikasna rešenja koja pomažu ljudima i poslovima da rastu. Ispod možete pronaći moje aktuelne projekte, a za detaljnije tekstove i savete posetite moj blog.",
+    "avatarUrl": "/avatar.png",
     "secondaryBg": "bg-secondary"
   },
   "links": [
     {
       "id": "1",
-      "title": "Personal Website",
-      "url": "https://www.haydenbleasel.com/"
+      "title": "Moj Blog",
+      "url": "https://ljubo-blog.vercel.app"
     },
     {
       "id": "3",
       "title": "GitHub",
-      "url": "https://github.com/haydenbleasel"
+      "url": "https://github.com/LjuboLukovic"
     },
     {
       "id": "4",
       "title": "LinkedIn",
-      "url": "https://www.linkedin.com/in/haydenbleasel"
+      "url": "https://www.linkedin.com/in/LjuboLukovic"
     }
   ],
   "themeSettings": {
-    "colorTheme": "rose",
+    "colorTheme": "blue",
     "gradient": "none",
     "pattern": "pattern-none",
     "font": "font-sans",

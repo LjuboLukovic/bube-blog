@@ -2,7 +2,7 @@ import type React from "react";
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Inter, Merriweather, JetBrains_Mono } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeSettingsProvider } from "@/hooks/use-theme-settings";
 import { Toaster } from "@/components/ui/toaster";
@@ -43,10 +43,11 @@ export default function RootLayout({
 }>) {
   // Use the 'type' from data.json for the initial defaultTheme
   const initialThemeType = data.themeSettings.type || "system";
+  const isProduction = process.env.NODE_ENV === "production";
 
   return (
     <html lang="en" suppressHydrationWarning className="font-sans">
-      <GoogleTagManager gtmId={googleAnalyticsId} />
+      <GoogleAnalytics gaId={googleAnalyticsId} debugMode={!isProduction} />
       <body
         className={`${inter.variable} ${merriweather.variable} ${jetbrainsMono.variable}`}
       >

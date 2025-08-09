@@ -103,7 +103,7 @@ export function ViewMode({ title, url }: ViewModeProps) {
     <a
       href={url}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       className={cn(
         "relative overflow-hidden group border shadow-sm",
         "transition-all ease-in-out",

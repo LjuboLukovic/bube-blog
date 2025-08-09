@@ -5,7 +5,8 @@ const csp = [
   "img-src 'self' data:",
   "connect-src 'self' www.google-analytics.com www.googletagmanager.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "frame-src 'none'",
+  "frame-src 'same-origin' https://www.youtube.com",
+  "frame-ancestors 'same-origin'",
 ].join("; ");
 
 /** @type {import('next').NextConfig} */
@@ -22,6 +23,7 @@ const nextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=31536000; includeSubDomains; preload",
           },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {

@@ -1,16 +1,10 @@
 {
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml"
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
   "editor.tabSize": 4,
-  "prettier.configPath": "prettier.config.js",
-  "prettier.useEditorConfig": true,
   "files.exclude": {
     "**/dist": true
   }

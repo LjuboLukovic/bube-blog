@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Breaking the framework blog',
+  title: 'Ljubo Lukovic',
   author: 'Ljubo Lukovic',
-  headerTitle: 'Breaking the framework',
+  headerTitle: 'Ljubo',
   description:
     'Personal blog about software development, front-end tools, leadership, personal improvement and random thoughs.',
   language: 'en',

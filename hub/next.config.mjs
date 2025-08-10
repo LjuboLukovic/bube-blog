@@ -5,8 +5,8 @@ const csp = [
   "img-src 'self' data:",
   "connect-src 'self' www.google-analytics.com www.googletagmanager.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "frame-src 'same-origin' https://www.youtube.com",
-  "frame-ancestors 'same-origin'",
+  "frame-src 'self' https://www.youtube.com",
+  "frame-ancestors 'self'",
 ].join("; ");
 
 /** @type {import('next').NextConfig} */
@@ -67,9 +67,6 @@ const nextConfig = {
         ],
       },
     ];
-  },
-  images: {
-    unoptimized: true,
   },
   // output: 'export',
 };

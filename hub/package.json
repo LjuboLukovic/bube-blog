@@ -39,6 +39,7 @@
     "vaul": "^0.9.6"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.4.6",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

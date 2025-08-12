@@ -26,7 +26,7 @@ export function Header() {
   return (
     <div className="flex justify-between items-center mb-6 px-4">
       <h1 className="text-2xl font-bold text-muted-foreground">
-        Ljubo Lukovic
+        Linkovi i projekti
       </h1>
       <div className="flex gap-2">
         <DropdownMenu>

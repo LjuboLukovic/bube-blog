@@ -1,17 +1,18 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
 export interface LinkItemProps {
-  id: string
-  title: string
-  url: string
+  id: string;
+  title: string;
+  url: string;
+  disabled?: boolean;
 }
 
 export function useLinks(initialLinks: LinkItemProps[]) {
-  const [links, setLinks] = useState<LinkItemProps[]>(initialLinks)
+  const [links, setLinks] = useState<LinkItemProps[]>(initialLinks);
 
   return {
     links,
-  }
+  };
 }

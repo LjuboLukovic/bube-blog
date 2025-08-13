@@ -10,9 +10,10 @@ import { useMemo } from "react";
 interface ViewModeProps {
   title: string;
   url: string;
+  disabled?: boolean;
 }
 
-export function ViewMode({ title, url }: ViewModeProps) {
+export function ViewMode({ title, url, disabled }: ViewModeProps) {
   const { theme } = useTheme();
   const { themeSettings, getThemeColors } = useThemeSettings();
   const isDarkTheme = theme === "dark";
@@ -98,10 +99,10 @@ export function ViewMode({ title, url }: ViewModeProps) {
       opacity: themeSettings.effects.cardOpacity,
     };
   }, [themeColors, isDarkTheme, themeSettings.effects]);
-
+  console;
   return (
     <a
-      href={url}
+      href={disabled ? undefined : url}
       target="_blank"
       rel="noopener"
       className={cn(

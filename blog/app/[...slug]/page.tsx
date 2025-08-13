@@ -1,7 +1,6 @@
 import 'css/prism.css'
 import 'katex/dist/katex.css'
 
-import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
@@ -92,7 +91,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const post = allBlogs.find((p) => p.slug === slug) as Blog
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
-    const authorResults = allAuthors.find((p) => p.slug === author)
+    const authorResults = allAuthors.find((p) => p.slug === `authors/${author}`)
     return coreContent(authorResults as Authors)
   })
   const mainContent = coreContent(post)
@@ -103,7 +102,6 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       name: author.name,
     }
   })
-
   const Layout = layouts[post.layout || defaultLayout]
 
   return (

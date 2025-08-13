@@ -7,7 +7,6 @@ import { IS_DEVELOPMENT } from "@/lib/constants";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   React.useEffect(() => {
-    // Added console logging for debugging theme provider
     if (IS_DEVELOPMENT) console.log("ThemeProvider mounted");
   }, []);
 

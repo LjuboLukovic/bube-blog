@@ -31,6 +31,15 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Ljubo Lukovic – Hub",
   description: "Online prezentacija - Svi projekti i linkovi na jednom mestu.",
+  keywords: [
+    "Ljubo Lukovic",
+    "Bube",
+    "Hub",
+    "projekti",
+    "linkovi",
+    "programiranje",
+    "sajtovi",
+  ],
 };
 
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string;

@@ -8,8 +8,9 @@
   "links": [
     {
       "id": "1",
-      "title": "Moj Blog",
-      "url": "https://blog.ljubo.rs"
+      "title": "Moj Blog (Uskoro)",
+      "url": "https://blog.ljubo.rs",
+      "disabled": true
     },
     {
       "id": "2",

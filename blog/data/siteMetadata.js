@@ -8,8 +8,8 @@ const siteMetadata = {
   language: 'en',
   locale: 'en',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://ljubo.rs',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://blog.ljubo.rs',
+  siteRepo: 'https://github.com/LjuboLukovic/bube-blog/tree/main/blog',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: 'ljubolukovic93@gmail.com',

@@ -40,6 +40,16 @@ export const metadata: Metadata = {
     "programiranje",
     "sajtovi",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ljubo Lukovic – Hub",
+      },
+    ],
+  },
 };
 
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string;

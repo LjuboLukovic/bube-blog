@@ -33,10 +33,12 @@ export const metadata: Metadata = {
   description: "Online prezentacija - Svi projekti i linkovi na jednom mestu.",
   keywords: [
     "Ljubo Lukovic",
+    "ljubo.rs",
+    "ljubo",
     "Bube",
     "Hub",
     "projekti",
-    "linkovi",
+    "React Srbija",
     "programiranje",
     "sajtovi",
   ],

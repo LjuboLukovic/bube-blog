@@ -4,5 +4,5 @@ Personal repo with hub and blog.
 
 This repository contains two applications:
 
-- **Hub** – Main platform / dashboard.
-- **Blog** – Content publishing platform.
+- **[Hub](./hub)** – Main platform / dashboard.
+- **[Blog](./blog)** – Content publishing platform.

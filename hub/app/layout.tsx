@@ -66,7 +66,7 @@ export default function RootLayout({
   const isProduction = process.env.NODE_ENV === "production";
 
   return (
-    <html lang="en" suppressHydrationWarning className="font-sans">
+    <html lang="sr" suppressHydrationWarning className="font-sans">
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />

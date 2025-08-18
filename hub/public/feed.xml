@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ljubo.rs</title>
+        <link>https://ljubo.rs/</link>
+        <description>Najnoviji sadržaj sa sajta ljubo.rs</description>
+        <language>sr-RS</language>
+        <atom:link href="https://ljubo.rs/feed.xml" rel="self" type="application/rss+xml" />
+
+        <lastBuildDate>Mon, 18 Aug 2025 09:00:00 GMT</lastBuildDate>
+        <pubDate>Mon, 18 Aug 2025 09:00:00 GMT</pubDate>
+
+        <item>
+            <title>Početna stranica</title>
+            <link>https://ljubo.rs/</link>
+            <guid isPermaLink="true">https://ljubo.rs/</guid>
+            <pubDate>Mon, 11 Aug 2025 00:00:00 GMT</pubDate>
+            <description>Početna stranica sajta ljubo.rs | Ljubo Lukovic Hub</description>
+        </item>
+
+    </channel>
+</rss>
